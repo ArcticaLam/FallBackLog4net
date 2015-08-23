@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>log4netContrib</name>
+    </assembly>
+    <members>
+        <member name="T:log4netContrib.Appender.CountAppenderProxy">
+            <summary>
+            This appender proxy is chosen via the <see cref="F:log4netContrib.Appender.FallbackAppenderMode.Count"/> mode
+            from the <see cref="P:log4netContrib.Appender.FallbackAppender.Mode"/> property.
+            </summary>
+            <remarks>
+            <para>
+            see <see cref="T:log4netContrib.Appender.FallbackAppenderMode"/> for strategy details
+            </para>
+            </remarks>
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="T:log4netContrib.Appender.FallbackAppenderProxyBase">
+            <summary>
+            Provides the base class for the appender proxies use with <see cref="T:log4netContrib.Appender.FallbackAppender"/>
+            </summary>
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="M:log4netContrib.Appender.FallbackAppenderProxyBase.TryAppend(log4net.Core.LoggingEvent)">
+            <summary>
+            Attempts to append to wrapped appender
+            </summary>
+            <returns>Whether the append was successful</returns>
+        </member>
+        <member name="M:log4netContrib.Appender.FallbackAppenderProxyBase.TryAppend(log4net.Core.LoggingEvent[])">
+            <summary>
+            Attempts to append to wrapped appender
+            </summary>
+            <returns>Whether the append was successful</returns>
+        </member>
+        <member name="M:log4netContrib.Appender.FallbackAppenderProxyBase.DoAppend(System.Action)">
+            <summary>
+            Implemented by subclasses to provide their own behaviour
+            </summary>
+            <returns>Whether the append was successful</returns>
+        </member>
+        <member name="P:log4netContrib.Appender.FallbackAppenderProxyBase.Appender">
+            <summary>
+            Appender being wrapped
+            </summary>
+        </member>
+        <member name="M:log4netContrib.Appender.CountAppenderProxy.#ctor(log4net.Appender.IAppender,System.Int32)">
+            <summary>
+            Wraps up an <see cref="T:log4net.Appender.IAppender"/> adding extra behaviour to how to handle
+            an error while appending
+            </summary>
+            <param name="appendCount">number of appends to count to before trying to append agains while has error</param>
+        </member>
+        <member name="T:log4netContrib.Appender.FallbackAppenderMode">
+            <summary>
+            Used to determine how the <see cref="T:log4netContrib.Appender.FallbackAppender"/> deals with appenders
+            that have caused an error
+            </summary>
+            <remarks>
+            <list type="table">
+            <listheader>
+            <term><c>Indefinite</c></term>
+            <term><c>Time</c></term>
+            <term><c>Count</c></term>
+            </listheader>
+            <item>
+            <description>
+            Indefinite will mean that once an appender has had an error that appender
+            will not be appended to indefinitely.
+            </description>
+            </item>
+            <item>
+            <description>
+            Time will mean that once an appender has had an error the time will be recorded
+            and each time subsequent appends are attempted a check will be made to see if the
+            time the error was recorded is after the specified <see cref="P:log4netContrib.Appender.FallbackAppender.MinutesTimeout"/> if
+            so the appender will be reset as having an error and will be used once again.
+            </description>
+            </item>
+            <item>
+            <description>
+            Count will mean that once an appender has had an error subsequent appends will be
+            counted and if the number of counts reaches the <see cref="P:log4netContrib.Appender.FallbackAppender.AppendCount"/> the
+            appender will be reset as having an error and will be used once again.
+            </description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:log4netContrib.Appender.FallbackAppender">
+            <summary>
+            This appender takes care of falling back to another appender if appending causes
+            an error
+            </summary>
+            <remarks>
+            <para>
+            The appenders are checked in the order they are referenced  in the XML
+            </para>
+            <example>
+            example of XML declaration
+            <code lang="XML" escaped="true">
+            <appender name="FallbackAppender" type="log4netContrib.Appender.FallbackAppender, log4netContrib">
+                <appender-ref ref="FileAppender"/>
+                <appender-ref ref="ConsoleAppender"/>
+                <mode value="time"/>
+                <minutesTimeout value="10"/>
+            </appender>
+            </code>
+            In this example if FileAppender caused an error the append will fallback to ConsoleAppender
+            </example>
+            <para>
+            <seealso cref="T:log4netContrib.Appender.FallbackAppenderMode"/>
+            </para>
+            </remarks>
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="M:log4netContrib.Appender.FallbackAppender.ActivateOptions">
+            <summary>
+            Wraps the appenders in the corresponding <see cref="T:log4netContrib.Appender.FallbackAppenderProxyBase"/>
+            implementation using the <see cref="T:log4netContrib.Appender.FallbackAppenderMode"/> selected
+            </summary>
+        </member>
+        <member name="P:log4netContrib.Appender.FallbackAppender.Mode">
+            <summary>
+            Sets the <see cref="T:log4netContrib.Appender.FallbackAppender"/> into a specific <see cref="T:log4netContrib.Appender.FallbackAppenderMode"/>
+            </summary>
+        </member>
+        <member name="P:log4netContrib.Appender.FallbackAppender.MinutesTimeout">
+            <summary>
+            Used in conjuction with <see cref="F:log4netContrib.Appender.FallbackAppenderMode.Time"/> to specify
+            the amount of minutes timeout to wait for before resetting that an error occurred
+            on an appender.
+            </summary>
+            <remarks>
+            <para>
+            Must be greater than 0
+            </para>
+            <para>
+            see <seealso cref="T:log4netContrib.Appender.FallbackAppenderMode"/>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:log4netContrib.Appender.FallbackAppender.AppendCount">
+            <summary>
+            Used in conjunction with <see cref="F:log4netContrib.Appender.FallbackAppenderMode.Count"/> to specify
+            the amount of counts to use before resetting that and error occurred on an appender.
+            </summary>
+            <remarks>
+            <para>Must be greater than 0</para>
+            <para>
+            see <seealso cref="T:log4netContrib.Appender.FallbackAppenderMode"/>
+            </para>
+            </remarks>
+        </member>
+        <member name="T:log4netContrib.Appender.RecordingErrorHandler">
+            <summary>
+            This object records whether an error has been recorded
+            </summary>
+            
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="T:log4netContrib.Appender.IndefiniteAppenderProxy">
+            <summary>
+            This appender proxy is chosen via the <see cref="F:log4netContrib.Appender.FallbackAppenderMode.Indefinite"/> mode
+            from the <see cref="P:log4netContrib.Appender.FallbackAppender.Mode"/> property.
+            </summary>
+            <remarks>
+            <para>
+            see <see cref="T:log4netContrib.Appender.FallbackAppenderMode"/> for strategy details
+            </para>
+            </remarks>
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="T:log4netContrib.Appender.TimeAppenderProxy">
+            <summary>
+            This appender proxy is chosen via the <see cref="F:log4netContrib.Appender.FallbackAppenderMode.Time"/> mode
+            from the <see cref="P:log4netContrib.Appender.FallbackAppender.Mode"/> property.
+            </summary>
+            <remarks>
+            <para>
+            see <see cref="T:log4netContrib.Appender.FallbackAppenderMode"/> for strategy details
+            </para>
+            </remarks>
+            <author>Michael Cromwell</author>
+        </member>
+        <member name="M:log4netContrib.Appender.TimeAppenderProxy.#ctor(log4net.Appender.IAppender,System.Int32)">
+            <summary>
+            Wraps up an <see cref="T:log4net.Appender.IAppender"/> adding extra behaviour to how to handle
+            an error while appending
+            </summary>
+            <param name="minutesTimeout">Amount of minutes to wait before attempting to append again while has error</param>
+        </member>
+        <member name="T:log4netContrib.SystemDateTime">
+            <summary>
+            Provides an abstraction for the system clock
+            </summary>
+        </member>
+        <member name="F:log4netContrib.SystemDateTime.Now">
+            <summary>
+            By default returns the current date and time but can be set for
+            unit testing purposes
+            </summary>
+        </member>
+    </members>
+</doc>

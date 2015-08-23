@@ -1,0 +1,9 @@
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4netContrib.dll
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4netContrib.pdb
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4netContrib.xml
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4net.dll
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4net.pdb
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\bin\Debug\log4net.xml
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\obj\Debug\log4netContrib.csprojResolveAssemblyReference.cache
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\obj\Debug\log4netContrib.dll
+C:\Users\Hiep.LamTang.CTCPLC\Documents\Visual Studio 2012\Projects\Log4NetExample\log4netContrib\obj\Debug\log4netContrib.pdb

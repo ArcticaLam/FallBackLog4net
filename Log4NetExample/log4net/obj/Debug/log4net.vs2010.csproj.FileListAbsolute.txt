@@ -1,0 +1,5 @@
+C:\Users\Hiep.LamTang.CTCPLC\Downloads\log4net-1.2.13-src\log4net-1.2.13\build\bin\net\2.0\debug\log4net.dll
+C:\Users\Hiep.LamTang.CTCPLC\Downloads\log4net-1.2.13-src\log4net-1.2.13\build\bin\net\2.0\debug\log4net.pdb
+C:\Users\Hiep.LamTang.CTCPLC\Downloads\log4net-1.2.13-src\log4net-1.2.13\build\bin\net\2.0\debug\log4net.xml
+C:\Users\Hiep.LamTang.CTCPLC\Downloads\log4net-1.2.13-src\log4net-1.2.13\src\obj\Debug\log4net.dll
+C:\Users\Hiep.LamTang.CTCPLC\Downloads\log4net-1.2.13-src\log4net-1.2.13\src\obj\Debug\log4net.pdb

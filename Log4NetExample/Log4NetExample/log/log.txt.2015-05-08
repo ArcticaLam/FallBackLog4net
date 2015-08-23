@@ -1,0 +1,4 @@
+ERROR 1 Log4NetExample.Program - 08/05/2015 14:11:45
+System.NullReferenceException: Object reference not set to an instance of an object.
+ERROR 10 Log4NetExample.Program - 08/05/2015 14:16:22
+System.NullReferenceException: Object reference not set to an instance of an object.
